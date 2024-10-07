@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace FMSquadAnalyzer.Components.Pages;
+namespace FMSquadAnalyzer.Pages;
 
 public partial class FileUpload : ComponentBase
 {
