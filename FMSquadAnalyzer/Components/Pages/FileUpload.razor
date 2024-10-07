@@ -1,0 +1,26 @@
+@page "/fileupload"
+
+<h3>Upload an HTML File</h3>
+
+<input type="file" @onchange="ReadFile" accept=".html" />
+
+@if (!string.IsNullOrEmpty(fileContent))
+{
+    <h4>File Content:</h4>
+    <pre>@fileContent</pre>
+}
+
+@code {
+    private string fileContent;
+
+    private async Task ReadFile(ChangeEventArgs e)
+    {
+        var files = e.Value as Microsoft.AspNetCore.Components.Forms.IBrowserFile;
+        if (files != null)
+        {
+            using var stream = files.OpenReadStream();
+            using var reader = new System.IO.StreamReader(stream);
+            fileContent = await reader.ReadToEndAsync();
+        }
+    }
+}
